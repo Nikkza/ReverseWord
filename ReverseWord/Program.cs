@@ -14,13 +14,13 @@ namespace ReverseWord
             while (true)
             {
                 string input = Console.ReadLine();
-                if (Regex.IsMatch(input, ".*?[a-zA-Z].*?"))
+                if (Regex.IsMatch(input, ".*?[a-zA-Z].*?") || !string.IsNullOrEmpty(input))
                 {
                     var resultsReverseWords = SpinWords(input);
                     Console.WriteLine(resultsReverseWords);
                 }
                 else
-                    Console.WriteLine("not a string");
+                    Console.WriteLine("not a string, string can't be empty");
             }
         }
 
