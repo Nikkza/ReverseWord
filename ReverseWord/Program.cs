@@ -27,7 +27,7 @@ namespace ReverseWord
         static string SpinWords(string word)
         {
             var splitWord = word.Split(' ');
-            string name = string.Empty;
+            string sortedReversedString = string.Empty;
             if (splitWord.Count() != 0)
             {
                 var wordsUnderFiveLength = splitWord.Where(x => x.Length < 5)
@@ -35,10 +35,8 @@ namespace ReverseWord
 
                 if (wordsUnderFiveLength.Count() != 0)
                 {
-                    foreach (var item in wordsUnderFiveLength)
-                    {
-                        name += $"{item} ";
-                    }
+                    foreach (var item in wordsUnderFiveLength)                  
+                        sortedReversedString += $"{item} ";
                 }
 
                 for (int idx = 0; idx < splitWord.Length; idx++)
@@ -48,11 +46,11 @@ namespace ReverseWord
                         char[] ch = splitWord[idx].ToArray();
                         Array.Reverse(ch);
                         var join = string.Join("", ch);
-                        name += $"{join} ";
+                        sortedReversedString += $"{join} ";
                     }
                 }
             }
-            return name.TrimEnd();
+            return sortedReversedString.TrimEnd();
         }
     }
 }
