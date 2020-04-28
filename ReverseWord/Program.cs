@@ -28,17 +28,28 @@ namespace ReverseWord
         {
             var splitWord = word.Split(' ');
             string name = string.Empty;
-
-            for (int idx = 0; idx < splitWord.Length; idx++)
+            if (splitWord.Count() != 0)
             {
-                if (splitWord[idx].Length < 5)
-                    name += $"{splitWord[idx]} ";
-                if (splitWord[idx].Length >= 5)
+                var wordsUnderFiveLength = splitWord.Where(x => x.Length < 5)
+                   .OrderBy(s => s).ThenBy(k => k.Length);
+
+                if (wordsUnderFiveLength.Count() != 0)
                 {
-                    char[] ch = splitWord[idx].ToArray();
-                    Array.Reverse(ch);
-                    var join = string.Join("", ch);
-                    name += $"{join} ";
+                    foreach (var item in wordsUnderFiveLength)
+                    {
+                        name += $"{item} ";
+                    }
+                }
+
+                for (int idx = 0; idx < splitWord.Length; idx++)
+                {
+                    if (splitWord[idx].Length >= 5)
+                    {
+                        char[] ch = splitWord[idx].ToArray();
+                        Array.Reverse(ch);
+                        var join = string.Join("", ch);
+                        name += $"{join} ";
+                    }
                 }
             }
             return name.TrimEnd();
